@@ -1,0 +1,215 @@
+/*
+  wc-chatbot | Chatbot.scss
+  Copyright (C) 2023  yishiashia <yishiashia@gmail.com>
+
+  This program is free software: you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published
+  by the Free Software Foundation, either version 3 of the License,
+  or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with
+  this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+:host {
+  --chatbot-avatar-bg-color: #F9A825;
+  --chatbot-avatar-img: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="45" y="55" width="110" height="100" rx="20" fill-opacity="0" stroke="rgba(76,76,76,1.0)" stroke-width="15"></rect><circle cx="75" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><circle cx="125" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><line x1="75" y1="125" x2="125" y2="125" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line><ellipse cx="30" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><ellipse cx="170" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><circle cx="100" cy="30" r="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></circle><line x1="100" y1="35" x2="100" y2="55" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line></svg>');
+  --chatbot-avatar-margin: 10%;
+  --chatbot-header-bg-color: #F9A825;
+  --chatbot-header-title-color: #FFFFFF;
+  --chatbot-body-bg-color: #9dbfde;
+  --chatbot-send-button-color: #F9A825;
+}
+
+$minimize-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><rect x="4" y="12" width="16" height="2" rx="1" ry="1" fill="white"/></svg>');
+
+.chatbot-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: min(360px, 90%);
+  height: min(500px, calc(100% - 100px));
+  background-color: #fff;
+  border: 0px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.chatbot-header {
+  background-color: var(--chatbot-header-bg-color);
+  color: var(--chatbot-header-title-color);
+  padding: 10px;
+  text-align: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  h3 {
+    margin: auto;
+  }
+  .left {
+    flex: 1;
+  }
+  .right {
+    flex: 1;
+    text-align: right;
+    button.minimize {
+      width: 28px;
+      height: 26px;
+      position: relative;
+      background-color: rgba(0,0,0,0);
+      border: solid 1px #FFF;
+      border-radius: 4px;
+      box-shadow: 0 0 2px rgba(255,255,255,0.3);
+      cursor: pointer;
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 4px;
+        left: 1px;
+        height: 24px;
+        width: 24px;
+        padding: 0;
+        background-image: $minimize-icon;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+  }
+}
+
+
+.chatbot-body {
+  height: 300px;
+  overflow-y: auto;
+  padding: 8px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--chatbot-body-bg-color);
+}
+
+.chatbot-footer {
+  flex-grow: 0;
+  flex-shrink: 0;
+  border-top: solid 1px #f1f1f1;
+}
+
+.chatbot-input {
+  padding: 10px;
+  display: flex;
+}
+
+.chatbot-input input {
+  flex: 1;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.chatbot-input button {
+  border: none;
+  /* background-color: #4CAF50; */
+  background-color: var(--chatbot-send-button-color);
+  color: white;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--chatbot-send-button-color);;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    &::before {
+      opacity: 0.8;
+    }
+  }
+}
+
+.bot-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+  &.avatar {
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: var(--chatbot-avatar-bg-color);
+    // border: solid 1px black;
+    overflow: hidden;
+    &::before {
+      content: "";
+      display: block;
+      height: calc(100% - 2 * var(--chatbot-avatar-margin));
+      width: calc(100% - 2 * var(--chatbot-avatar-margin));
+      margin: var(--chatbot-avatar-margin);
+      background-image: var(--chatbot-avatar-img);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+}
+
+.animation-scale-in {
+  animation: scale-in 0.2s ease-in-out forwards, fade-in 0.2s ease-in-out forwards;
+  transform-origin: bottom right;
+}
+.animation-scale-out {
+  animation: scale-out 0.2s ease-in-out forwards, fade-out 0.2s ease-in-out forwards;
+  transform-origin: bottom right;
+}
+.chatbot-container.hidden {
+  display: none;
+}
+/* bubble slide in */
+@keyframes scale-in {
+  0%   { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+/* bubble slide out */
+@keyframes scale-out {
+  0%   { transform: scale(1); }
+  100% { transform: scale(0); }
+}
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 0; }
+}
