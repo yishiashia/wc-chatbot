@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebComponent | Chatbot</title>
+    <script src="https://cdn.jsdelivr.net/npm/wc-chatbot@0.1.0"></script>
+    <style>
+      body {
+        background-color: #999;
+      }
+      chat-bot::part(chat-bubble) {
+        --chat-bubble-avatar-color: #F9A825;
+        word-wrap: break-word;
+      }
+    </style>
+    <script>
+      const sender = {
+        name: "bot",
+        id: "00000000-0000-0000-0000-000000000001",
+        avatar: 'data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="45" y="55" width="110" height="100" rx="20" fill-opacity="0" stroke="rgba(76,76,76,1.0)" stroke-width="15"></rect><circle cx="75" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><circle cx="125" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><line x1="75" y1="125" x2="125" y2="125" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line><ellipse cx="30" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><ellipse cx="170" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><circle cx="100" cy="30" r="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></circle><line x1="100" y1="35" x2="100" y2="55" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line></svg>'
+      }
+      function init() {
+        const chatBot = document.querySelector("chat-bot");
+        chatBot.sendMessage("Welcome back! What would you like to chat about?", {
+          right: false,
+          sender
+        });
+      }
+      function checkBot() {
+        const wrapper = document.querySelector('chat-bot').shadowRoot.querySelector('.chatbot-container')
+        if (wrapper.classList.contains('hidden') || wrapper.classList.contains('animation-scale-out')) {
+          document.querySelector('chat-bot').toggle();
+        }
+      }
+      function sendMsg(f) {
+        if (f.bm.value !== "") {
+          checkBot();
+          doSendMsg(f.bm.value);
+        }
+        return false;
+      }
+      function sendHtml(f) {
+        if (f.bm.value !== "") {
+          checkBot();
+          doSendMsg(null, { message: f.bm.value, right: false, sender });
+        }
+        return false;
+      }
+      function doSendMsg(m, options = { right: false, sender }) {
+        const chatBot = document.querySelector("chat-bot");
+        if (chatBot) {
+          chatBot.sendMessage(m, options);
+        }
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <chat-bot></chat-bot>
+    <div>
+      <form action="#" onsubmit="return sendMsg(this);">
+        <fieldset>
+          <legend>Text message</legend>
+          <input type="text" name="bm" placeholder="Type bot message here..." style="width: 300px;"
+            value="Hello!"
+          />
+          <br><br>
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+    <br>
+    <div>
+      <form action="#" onsubmit="return sendHtml(this);">
+        <fieldset>
+          <legend>HTML message</legend>
+          <textarea name="bm" placeholder="Type bot message here..." style="width: 300px; min-height: 100px;">
+This is a link of GitHub:<br>
+<a href="https://github.com">
+github
+</a>
+</textarea>
+          <br><br>
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+  </body>
+</html>
