@@ -1,7 +1,7 @@
 # wc-chatbot
 
-<!-- [![coverage][coverage-image]][coverage-url] -->
 [![published][wc-image]][wc-url]
+[![coverage][coverage-image]][coverage-url]
 [![npm][npm-version-img]][npm-url]
 [![npm][npm-download-img]][npm-url]
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/wc-chatbot/badge)](https://data.jsdelivr.com/v1/package/npm/wc-chatbot/badge)
@@ -245,6 +245,9 @@ To see the styles can be customized, please look the document of [wc-bubble](htt
 [npm-version-img]: https://img.shields.io/npm/v/wc-chatbot.svg?style=flat-square
 [npm-download-img]: https://img.shields.io/npm/dm/wc-chatbot.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/wc-chatbot
+
+[coverage-image]: https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fgist.githubusercontent.com%2Fyishiashia%2Fdee60aefdce58a7559baeb7c5deb3a8b%2Fraw%2F177b2224ae86a8c54556813eb1521e987b00aad7%2Fwc-chatbot__heads_main.json
+[coverage-url]: https://gist.github.com/yishiashia/dee60aefdce58a7559baeb7c5deb3a8b#file-wc-chatbot__heads_main-json
 
 [github-issue-img]: https://img.shields.io/github/issues/yishiashia/wc-chatbot.svg?style=flat-square
 [github-issue-url]: https://github.com/yishiashia/wc-chatbot/issues

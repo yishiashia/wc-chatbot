@@ -1,6 +1,6 @@
 {
   "name": "wc-chatbot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple WebComponent for chatting with real people or bots, such as OpenAI ChatGPT or Google Bard AI.",
   "main": "./dist/wc-chatbot.js",
   "types": "./types/index.d.ts",
