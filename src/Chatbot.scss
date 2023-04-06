@@ -29,6 +29,7 @@
 $minimize-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><rect x="4" y="12" width="16" height="2" rx="1" ry="1" fill="white"/></svg>');
 
 .chatbot-container {
+  z-index: 9999;
   position: fixed;
   bottom: 80px;
   right: 20px;
@@ -155,6 +156,7 @@ $minimize-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/
 }
 
 .bot-button {
+  z-index: 9999;
   position: fixed;
   right: 20px;
   bottom: 20px;
