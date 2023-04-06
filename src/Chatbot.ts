@@ -285,7 +285,6 @@ export default class Chatbot extends HTMLElement {
         message: chatBubble.msg
       }
     });
-    console.log(sentEvent);
     this.dispatchEvent(sentEvent);
     if (this.body !== null) {
       this.body.scrollTo({ top: this.body.scrollHeight, behavior: 'smooth' })

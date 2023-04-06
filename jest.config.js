@@ -1,8 +1,9 @@
 module.exports = {
-  testEnvironment: "node",
+  testEnvironment: "jest-environment-jsdom",
   moduleNameMapper: {
     "^.+\\.(css|less|scss)$": "babel-jest"
   },
+  // setupFiles: [`<rootDir>/jest-shim.js`],
   transform: {
     "\\.[jt]sx?$": "babel-jest",
   },
