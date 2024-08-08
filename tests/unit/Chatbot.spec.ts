@@ -133,4 +133,46 @@ describe("Chatbot web component", () => {
     expect(container!.classList.contains("animation-scale-out")).toBe(false);
     expect(container!.classList.contains("animation-scale-in")).toBe(true);
   });
+
+  test('hide last loading bubble', () => {
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    let messages = chatbot.shadowRoot!.querySelectorAll("chat-bubble[loading]");
+    expect(messages.length).toBe(3);
+    messages.forEach((node, i) => {
+      node.setAttribute('data-index', String(i))
+    });
+    (chatbot as Chatbot).hideLastLoading();
+    messages = chatbot.shadowRoot!.querySelectorAll("chat-bubble[loading]");
+    expect(messages.length).toBe(2);
+    expect(messages[messages.length - 1]?.dataset?.index).toBe("1");
+  })
+
+  test('hide all loading bubbles', () => {
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    let messages = chatbot.shadowRoot!.querySelectorAll("chat-bubble[loading]");
+    expect(messages.length).toBe(3);
+    (chatbot as Chatbot).hideAllLoading();
+    messages = chatbot.shadowRoot!.querySelectorAll("chat-bubble[loading]");
+    expect(messages.length).toBe(0);
+  })
+
+  test('hide loading bubble at index 1', () => {
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    (chatbot as Chatbot).sendMessage("", {right: false, loading: true});
+    let messages = chatbot.shadowRoot!.querySelectorAll("chat-bubble[loading]");
+    expect(messages.length).toBe(3);
+    messages.forEach((node, i) => {
+      node.setAttribute('data-index', String(i))
+    });
+    (chatbot as Chatbot).hideLoading(1);
+    messages = chatbot.shadowRoot!.querySelectorAll("chat-bubble[loading]");
+    expect(messages.length).toBe(2);
+    expect(messages[messages.length - 1]?.dataset?.index).toBe("2");
+    expect(messages[0]?.dataset?.index).toBe("0");
+  })
 });

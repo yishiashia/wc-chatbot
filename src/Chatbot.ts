@@ -274,6 +274,33 @@ export default class Chatbot extends HTMLElement {
     }
   }
 
+  hideLoading(index: number) {
+    if (this.shadowRoot !== null) {
+      const cb = this.shadowRoot.querySelectorAll('chat-bubble[loading]')
+      if (cb.length > 0 && index in cb) {
+        cb[index].parentElement?.removeChild(cb[index])
+      }
+    }
+  }
+
+  hideAllLoading() {
+    if (this.shadowRoot !== null) {
+      const cb = this.shadowRoot.querySelectorAll('chat-bubble[loading]')
+      Array.from(cb).forEach(element => {
+        element.parentElement?.removeChild(element)
+      });
+    }
+  }
+
+  hideLastLoading() {
+    if (this.shadowRoot !== null) {
+      const cb = this.shadowRoot.querySelectorAll('chat-bubble[loading]')
+      if (cb.length > 0) {
+        cb[cb.length - 1].parentElement?.removeChild(cb[cb.length - 1])
+      }
+    }
+  }
+
   get messages() {
     return this._messages;
   }

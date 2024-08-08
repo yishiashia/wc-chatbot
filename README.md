@@ -4,7 +4,7 @@
 [![coverage][coverage-image]][coverage-url]
 [![npm][npm-version-img]][npm-url]
 [![npm][npm-download-img]][npm-url]
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/wc-chatbot/badge)](https://data.jsdelivr.com/v1/package/npm/wc-chatbot/badge)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/wc-chatbot/badge)](https://www.jsdelivr.com/package/npm/wc-chatbot)
 [![GitHub issues][github-issue-img]][github-issue-url]
 ![license][license-img]
 
@@ -178,6 +178,18 @@ chatbot.sendMessage(null, {
 ```
 
 > <b>Warning</b>: <br>It is better to send a HTML message only with the trusted data source, or doing HTML sanitization before sending.
+
+### hideLoading(index)
+This method is used to remove a specific `loading` bubble from the chatbot UI.
+
+#### Parameters
+ - `index` - The index of the chat-bubble element to be removed.
+
+### hideAllLoading()
+This method is used to remove all `loading` bubbles from the chatbot UI.
+
+### hideLastLoading()
+This method is used to remove the last `loading` bubble from the chatbot UI.
 
 ## Event
 
