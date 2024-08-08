@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebComponent | Chatbot</title>
     <style>
       body {
@@ -14,7 +14,7 @@
       } */
       chat-bot::part(chat-bubble) {
         /* --chat-bubble-avatar-color: #0D8ABC; */
-        --chat-bubble-avatar-color: #F9A825;
+        --chat-bubble-avatar-color: #f9a825;
       }
     </style>
     <script>
@@ -26,19 +26,28 @@
       const sender = {
         name: "bot",
         id: "00000000-0000-0000-0000-000000000001",
-        avatar: 'data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="45" y="55" width="110" height="100" rx="20" fill-opacity="0" stroke="rgba(76,76,76,1.0)" stroke-width="15"></rect><circle cx="75" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><circle cx="125" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><line x1="75" y1="125" x2="125" y2="125" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line><ellipse cx="30" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><ellipse cx="170" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><circle cx="100" cy="30" r="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></circle><line x1="100" y1="35" x2="100" y2="55" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line></svg>'
-      }
+        avatar:
+          'data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="45" y="55" width="110" height="100" rx="20" fill-opacity="0" stroke="rgba(76,76,76,1.0)" stroke-width="15"></rect><circle cx="75" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><circle cx="125" cy="95" r="10" fill="rgba(76,76,76,1.0)"></circle><line x1="75" y1="125" x2="125" y2="125" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line><ellipse cx="30" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><ellipse cx="170" cy="95" rx="10" ry="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></ellipse><circle cx="100" cy="30" r="10" fill="rgba(76,76,76,1.0)" stroke="rgba(76,76,76,1.0)" stroke-width="10"></circle><line x1="100" y1="35" x2="100" y2="55" stroke="rgba(76,76,76,1.0)" stroke-width="10"></line></svg>',
+      };
       function init() {
         const chatBot = document.querySelector("chat-bot");
-        chatBot.sendMessage("Welcome back! What would you like to chat about?", {
-          right: false,
-          sender
-        });
+        chatBot.sendMessage(
+          "Welcome back! What would you like to chat about?",
+          {
+            right: false,
+            sender,
+          }
+        );
       }
       function checkBot() {
-        const wrapper = document.querySelector('chat-bot').shadowRoot.querySelector('.chatbot-container')
-        if (wrapper.classList.contains('hidden') || wrapper.classList.contains('animation-scale-out')) {
-          document.querySelector('chat-bot').toggle();
+        const wrapper = document
+          .querySelector("chat-bot")
+          .shadowRoot.querySelector(".chatbot-container");
+        if (
+          wrapper.classList.contains("hidden") ||
+          wrapper.classList.contains("animation-scale-out")
+        ) {
+          document.querySelector("chat-bot").toggle();
         }
       }
       function sendMsg(f) {
@@ -61,6 +70,28 @@
           chatBot.sendMessage(m, options);
         }
       }
+      function leftLoading() {
+        checkBot();
+        doSendMsg(null, { right: false, loading: true });
+      }
+      function rightLoading() {
+        checkBot();
+        doSendMsg(null, { right: true, loading: true });
+      }
+      function hideLastLoading() {
+        checkBot();
+        const chatBot = document.querySelector("chat-bot");
+        if (chatBot) {
+          chatBot.hideLastLoading();
+        }
+      }
+      function hideAllLoading() {
+        checkBot();
+        const chatBot = document.querySelector("chat-bot");
+        if (chatBot) {
+          chatBot.hideAllLoading();
+        }
+      }
     </script>
   </head>
   <body onload="init()">
@@ -69,22 +100,56 @@
       <form action="#" onsubmit="return sendMsg(this);">
         <fieldset>
           <legend>Bot message</legend>
-          <input type="text" name="bm" placeholder="Type bot message here..." style="width: 300px;" />
-          <br><br>
+          <input
+            type="text"
+            name="bm"
+            placeholder="Type bot message here..."
+            style="width: 300px"
+          />
+          <br /><br />
           <button type="submit">Submit</button>
         </fieldset>
       </form>
     </div>
-    <br>
+    <br />
     <div>
       <form action="#" onsubmit="return sendHtml(this);">
         <fieldset>
           <legend>HTML message</legend>
-          <input type="text" name="bm" placeholder="Type bot message here..." style="width: 300px;" />
-          <br><br>
+          <input
+            type="text"
+            name="bm"
+            placeholder="Type bot message here..."
+            style="width: 300px"
+          />
+          <br /><br />
           <button type="submit">Submit</button>
         </fieldset>
       </form>
+    </div>
+    <br />
+    <div>
+      <fieldset>
+        <legend>Loading</legend>
+        <div style="display: flex; gap: 8px">
+          <button type="submit" onclick="leftLoading()">left loading</button>
+          <button type="submit" onclick="rightLoading()">right loading</button>
+        </div>
+      </fieldset>
+    </div>
+    <br />
+    <div>
+      <fieldset>
+        <legend>Hide loading</legend>
+        <div style="display: flex; gap: 8px">
+          <button type="submit" onclick="hideLastLoading()">
+            hide last loading
+          </button>
+          <button type="submit" onclick="hideAllLoading()">
+            hide all loading
+          </button>
+        </div>
+      </fieldset>
     </div>
   </body>
 </html>
