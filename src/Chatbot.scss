@@ -24,6 +24,8 @@
   --chatbot-header-title-color: #FFFFFF;
   --chatbot-body-bg-color: #9dbfde;
   --chatbot-send-button-color: #F9A825;
+  --chatbot-container-width: 360px;
+  --chatbot-container-height: 500px;
 }
 
 $minimize-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><rect x="4" y="12" width="16" height="2" rx="1" ry="1" fill="white"/></svg>');
@@ -33,8 +35,8 @@ $minimize-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: min(360px, 90%);
-  height: min(500px, calc(100% - 100px));
+  width: min(var(--chatbot-container-width), 90%);
+  height: min(var(--chatbot-container-height), calc(100% - 100px));
   background-color: #fff;
   border: 0px solid #ccc;
   border-radius: 5px;

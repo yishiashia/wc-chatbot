@@ -223,6 +223,8 @@ For example:
     --chatbot-header-title-color: #FFFFFF;
     --chatbot-body-bg-color: #9dbfde;
     --chatbot-send-button-color: #F9A825;
+    --chatbot-container-width: 360px;
+    --chatbot-container-height: 500px;
   }
 </style>
 ```
@@ -236,6 +238,8 @@ For example:
  | --chatbot-header-title-color | This variable sets the color of the title in the chatbot header. |
  | --chatbot-body-bg-color | This variable sets the background color of the chatbot message box. |
  | --chatbot-send-button-color | This variable sets the color of the send button. |
+ | --chatbot-container-width | This variable sets the width of the chat UI. |
+ | --chatbot-container-height | This variable sets the height of the chat UI. |
 
 
 ### Bubble element style
